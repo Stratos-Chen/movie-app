@@ -1,18 +1,36 @@
 class Api::ActorsController < ApplicationController
-  def find_actor
-    @display = Actor.find_by(id: 1)
+  def index
+    @actor = Actor.all
     render "display_actor.json.jb"
   end
 
-  def find_actor_query
-    @id = params['id']
-    @display = Actor.find_by(id: @id)
-    render "display_actor.json.jb"
-  end
-
-  def find_actor_segment
-    @id = params[:id]
-    @segment = Actor.find_by(id: @id)
+  def show
+    @actor = Actor.find_by(id: params[:id])
     render "actors_segment.json.jb"
+  end
+
+  def create
+    @actor = Actor.new(
+      first_name: params[:first_name],
+      last_name: params[:last_name],
+      known_for: params[:known_for]
+    )
+    @actor.save
+    render "actors_segment.json.jb"
+  end
+
+  def update
+    @actor = Actor.find_by(id: params[:id])
+    @actor.first_name = params[:first_name] || @actor.first_name
+    @actor.last_name = params[:last_name] || @actor.last_name
+    @actor.known_for = params[:known_for] || @actor.known_for
+    @actor.save
+    render "actor_segment.json.jb"
+  end
+
+  def destroy
+    @actor = Actor.find_by(id: params[:id])
+    @actor.destroy
+    render "actor_segment.json.jb"
   end
 end

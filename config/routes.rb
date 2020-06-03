@@ -7,10 +7,15 @@ Rails.application.routes.draw do
   #   get "/photos" => "photos#index"
   # end
   namespace :api do
-    get "/actor_list" => "actors#find_actor"
-    get "/movie_list" => "movies#find_movie"
-    get "/display_actor" => "actors#find_actor_query"
-    get "/display_actor2/:id" => "actors#find_actor_segment"
-    post "/display_actor3" => "actors#find_actor_query"
+    get "/actors" => "actors#index"
+    get "/movies" => "movies#index"
+    get "/actors/:id" => "actors#show"
+    get "/movies/:id" => "movies#show"
+    post "/actors" => "actors#create"
+    post "/movies" => "movies#create"
+    patch "/actors/:id" => "actors#update"
+    patch "/movies/:id" => "movies#update"
+    delete "/actors/:id" => "actors#destroy"
+    delete "/movies/:id" => "movies#destroy"
   end
 end

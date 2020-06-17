@@ -34,7 +34,7 @@ class Api::MoviesController < ApplicationController
     if @movie.save
       render "find_movie.json.jb"
     else
-      render json: {errors: @movie.errors.full_messages}, status; unprocessable_entity
+      render json: {errors: @movie.errors.full_messages}, status: unprocessable_entity
     end
   end
 

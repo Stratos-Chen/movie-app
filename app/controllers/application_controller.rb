@@ -30,6 +30,6 @@ class ApplicationController < ActionController::Base
   def authenticate_admin
     unless admin == true
       render json: {}, status: :unauthorized
+    end
   end
 end
-
